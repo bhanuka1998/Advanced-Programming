@@ -9,10 +9,8 @@
  * @author cb007874
  */
 public class CalcGUI extends javax.swing.JFrame {
+    Calculator calc1 = new Calculator();
 
-    /**
-     * Creates new form CalcGUI
-     */
     public CalcGUI() {
         initComponents();
     }
@@ -32,6 +30,11 @@ public class CalcGUI extends javax.swing.JFrame {
         txtnum2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtanswer = new javax.swing.JTextField();
+        btnclear = new javax.swing.JButton();
+        btnadd = new javax.swing.JButton();
+        btnsub = new javax.swing.JButton();
+        btnmul = new javax.swing.JButton();
+        btndiv = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,22 +47,81 @@ public class CalcGUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Answer");
 
+        btnclear.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        btnclear.setText("Clear");
+        btnclear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnclearActionPerformed(evt);
+            }
+        });
+
+        btnadd.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnadd.setText("+");
+        btnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddActionPerformed(evt);
+            }
+        });
+
+        btnsub.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnsub.setText("-");
+        btnsub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsubActionPerformed(evt);
+            }
+        });
+
+        btnmul.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnmul.setText("*");
+        btnmul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmulActionPerformed(evt);
+            }
+        });
+
+        btndiv.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btndiv.setText("/");
+        btndiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndivActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
-                .addGap(114, 114, 114)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtnum1)
-                    .addComponent(txtnum2)
-                    .addComponent(txtanswer, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(btnadd)
+                                .addGap(49, 49, 49)
+                                .addComponent(btnsub)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
+                                .addGap(114, 114, 114)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnmul)
+                                .addGap(56, 56, 56)
+                                .addComponent(btndiv))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtnum1)
+                                .addComponent(txtnum2)
+                                .addComponent(txtanswer, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)))
+                        .addGap(16, 16, 16)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,12 +138,50 @@ public class CalcGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtanswer, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnadd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnsub, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnmul, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btndiv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnclear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+        calc1.num1 = Integer.parseInt(txtnum1.getText());
+        calc1.num2 = Integer.parseInt(txtnum2.getText());
+        txtanswer.setText(String.valueOf(calc1.add()));
+    }//GEN-LAST:event_btnaddActionPerformed
+
+    private void btnsubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubActionPerformed
+        calc1.num1 = Integer.parseInt(txtnum1.getText());
+        calc1.num2 = Integer.parseInt(txtnum2.getText());
+        txtanswer.setText(String.valueOf(calc1.sub()));
+    }//GEN-LAST:event_btnsubActionPerformed
+
+    private void btnmulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmulActionPerformed
+        calc1.num1 = Integer.parseInt(txtnum1.getText());
+        calc1.num2 = Integer.parseInt(txtnum2.getText());
+        txtanswer.setText(String.valueOf(calc1.mul()));
+    }//GEN-LAST:event_btnmulActionPerformed
+
+    private void btndivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndivActionPerformed
+        calc1.num1 = Integer.parseInt(txtnum1.getText());
+        calc1.num2 = Integer.parseInt(txtnum2.getText());
+        txtanswer.setText(String.valueOf(calc1.div()));
+    }//GEN-LAST:event_btndivActionPerformed
+
+    private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
+        txtanswer.setText("");
+        txtnum1.setText("");
+        txtnum2.setText("");
+    }//GEN-LAST:event_btnclearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +219,11 @@ public class CalcGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnadd;
+    private javax.swing.JButton btnclear;
+    private javax.swing.JButton btndiv;
+    private javax.swing.JButton btnmul;
+    private javax.swing.JButton btnsub;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
